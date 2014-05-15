@@ -4,7 +4,8 @@
 Plugin Name: Live Tweets
 Version: 0.0.1
 Description: Ajax Live Tweets that use Twitter API 1.1
-Author: Pigmento (http://www.pigmentolab.com)
+Author: Pigmento
+Author URI: http://www.pigmentolab.com
 Plugin URI: 
 Text Domain: pg_live_tweets
 Domain Path:

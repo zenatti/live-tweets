@@ -1,12 +1,12 @@
 <?php
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
+//error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 require dirname( __FILE__ ) . '/inc/options.php';
 require dirname( __FILE__ ) . '/inc/functions.php';
 
 require '../../../wp-load.php';
-require '../../../wp-admin/includes/plugin.php';
+//require '../../../wp-admin/includes/plugin.php';
 require dirname( __FILE__ ) . '/api/TwitterAPIExchange.php';
 
 // date formats params

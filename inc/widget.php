@@ -53,6 +53,9 @@ class Pigmento_Live_Tweets_Widget extends WP_Widget {
 
         // detect container
         $container = isset($args['container']) ? $args['container'] : 'ul';
+		
+		// detect twitter link
+        $twitterlink = isset($instance['twitterlink']) && !empty($instance['twitterlink']) ? $instance['twitterlink'] : '';        
 
         // detect count
         $count = isset($instance['count']) && !empty($instance['count']) ? $instance['count'] : 10;        
@@ -69,7 +72,9 @@ class Pigmento_Live_Tweets_Widget extends WP_Widget {
         echo "<$container data-count=\"$count\" class=\"live-tweet-container\"></$container>";
 
         // echo follow us
-        echo '<p><a href="">Seguici su Twitter &raquo;</a></p>';
+		if(strlen($twitterlink) > 0) {
+			echo '<p><a href="' . $twitterlink . '">' . __( 'Follow us on Twitter &raquo;', 'pg_live_tweets' ) . '</a></p>';
+		}
 
         // echo after tmpl
         echo $args['after_widget'];
@@ -86,6 +91,7 @@ class Pigmento_Live_Tweets_Widget extends WP_Widget {
     public function form( $instance ) {
 
         $title = isset( $instance[ 'title' ] ) ? $instance[ 'title' ] : __( 'New title', 'pg_live_tweets' );
+        $twitterlink = isset( $instance[ 'twitterlink' ] ) ? $instance[ 'twitterlink' ] : '';
         $count = isset( $instance[ 'count' ] ) ? $instance[ 'count' ] : '10';
 
         ?>
@@ -98,6 +104,11 @@ class Pigmento_Live_Tweets_Widget extends WP_Widget {
         <p>
         <label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php _e( 'Count:', 'pg_live_tweets' ); ?></label> 
         <input class="widefat" id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" type="text" value="<?php echo esc_attr( $count ); ?>">
+        </p>
+		
+		<p>
+        <label for="<?php echo $this->get_field_id( 'twitterlink' ); ?>"><?php _e( 'Twitter Link:', 'pg_live_tweets' ); ?></label> 
+        <input class="widefat" id="<?php echo $this->get_field_id( 'twitterlink' ); ?>" name="<?php echo $this->get_field_name( 'twitterlink' ); ?>" type="text" value="<?php echo esc_attr( $twitterlink ); ?>">
         </p>
 
         <?php 
@@ -118,6 +129,7 @@ class Pigmento_Live_Tweets_Widget extends WP_Widget {
 
         $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
         $instance['count'] = ( ! empty( $new_instance['count'] ) ) ? strip_tags( $new_instance['count'] ) : '';
+        $instance['twitterlink'] = ( ! empty( $new_instance['twitterlink'] ) ) ? strip_tags( $new_instance['twitterlink'] ) : '';
 
         return $instance;
     }
